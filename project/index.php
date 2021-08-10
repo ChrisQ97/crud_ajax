@@ -22,6 +22,7 @@
                         document.addEventListener('DOMContentLoaded', function() {
                                         var elems = document.querySelectorAll('select');
                                         var instances = M.FormSelect.init(elems, options);
+                                        
                                     });
                     </script>
     </head>
@@ -121,37 +122,41 @@
             <form class="col s12" id="frm_update">
                 <div class="row">
                     <div class="input-field">
+                        <label class="active" for="lnid" id="lnid">
+                            Id
+                        </label>
                         <input class="" id="nid" name="nid" type="text" disabled="true">
-                            <label for="nid">
-                                Id
-                            </label>
+
                         </input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field">
+                        <label class="active" for="lfirst_name" id="lfirst_name">
+                            First Name
+                        </label>
                         <input class="" id="mfirst_name" name="mfirst_name" type="text">
-                            <label for="first_name">
-                                First Name
-                            </label>
+
                         </input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field">
+                        <label  class="active" for="llast_name" id="llast_name">
+                        Last Name
+                        </label>
                         <input class="" id="mlast_name" name="mlast_name" type="text">
-                            <label for="last_name">
-                                Last Name
-                            </label>
+
                         </input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field">
+                        <label class="active" for="lage" id="lage">
+                            Age
+                        </label>
                         <input class="" id="mage" name="mage" type="text">
-                            <label for="age">
-                                Age
-                            </label>
+
                         </input>
                     </div>
                 </div>
@@ -185,9 +190,7 @@
                     </button>
                     </div>
                 </div>
-                <div class="input-field">
 
-                </div>
             </form>
         </div>
     </div>

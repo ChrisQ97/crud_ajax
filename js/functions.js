@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     fetchData();
     $('.modal').modal();
     $('#btn-save').on('click', function(event) {
@@ -13,7 +14,14 @@ $(document).ready(function() {
         event.preventDefault();
     });
     $(document).on('click', '#btn-edit', function(){
+        
         writeModal($(this));
+
+    });
+    $(document).on('click', '#btn-delete', function() {
+        event.preventDefault();
+        deletePerson();
+        
     });
     function add_data() {
         if (valideData()) {
@@ -105,14 +113,41 @@ $(document).ready(function() {
             alert("Age is empty")
             ok = false;
         }
-        if ($('#mgenre').val() !== "Female" && $('#genre').val() !== "Male") {
+        if ($('#mgenre').val() !== "Female" && $('#mgenre').val() !== "Male") {
             alert("Select a correct genre");
             ok = false;
         }
         return ok;
     }
     function updateData(){
+        let uid = $('#nid').val();
+        let uname = $('#mfirst_name').val();
+        let ulast = $('#mlast_name').val();
+        let uage = $('#mage').val();
+        let ugenre = $('#mgenre').val();
+        let data = {
+            id: parseInt(uid),
+            first_name: uname,
+            last_name: ulast,
+            age: parseInt(uage),
+            genre: ugenre
+        }
+        $.ajax({
+            url: 'update-person.php',
+            data: data,
+            type: 'POSt',
+            success: function (response){
 
+                if(response == 1){
+                    alert('Data updated');
+                    $('#modal1').modal('close');
+                } else {
+                    alert('Unexpected error');
+                }
+            }
+
+        });
+        fetchData();
     }
     function writeModal(element){
         searchData(element.attr('personId'));
@@ -128,9 +163,19 @@ $(document).ready(function() {
                 $('#mfirst_name').val(user.name);
                 $('#mlast_name').val(user.last_name);
                 $('#mage').val(user.age);
-                $('#mgenre').val(user.genre);
+                $('#mgenre').val("Choose your option");
             }
         });
+
+    }
+    function deletePerson() {
+        if(confirm('Are you sure to dele it?')){
+            let id = parseInt($('#nid').val());
+            $.post('delete.php', {id}, function(response) {
+                fetchData();
+            });
+            
+        }
     }
 
 });
