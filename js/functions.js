@@ -166,6 +166,10 @@ $(document).ready(function() {
                 $('#mgenre').val("Choose your option");
             }
         });
+        document.getElementById('#mfirst_name').focus();
+        document.getElementById('#mlast_name').focus();
+        document.getElementById('#mage').focus();
+
 
     }
     function deletePerson() {
